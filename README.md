@@ -16,10 +16,9 @@ Esses dados são enviados via MQTT para um dashboard, que é atualizado em tempo
 É também enviado via alerta de vento forte (+80km/h) para outros usuários do Twitter via Twitter API.
 
 ## Diagrama do projeto
+Dashboard
 
-Adicione uma ou mais fotos do projeto, pode ser uma imagem da arquitetura, do circuito eletrônico do Flow desenvolvido. 
-
-<img src="/imagem.jpg" width="550">
+<img src="./Image.png" width="550">
 
 
 ## Como usar 
@@ -27,7 +26,6 @@ Adicione uma ou mais fotos do projeto, pode ser uma imagem da arquitetura, do ci
 ### 0. Clone esse repositório
 * Na linha de comando, vá para uma pasta de preferência onde vai conter os arquivos do projeto
 * Insira o comando: git clone https://github.com/ghsoares/NAC4.git e abra a pasta `NAC4`
-
 ### 1. Softwares necessários:
 * [Simulide](https://www.simulide.com/p/downloads.html)
 * [Node-RED (local)](https://nodered.org/docs/getting-started/local)
