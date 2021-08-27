@@ -45,6 +45,7 @@ Dashboard
 * Vá em http://127.0.0.1:1880/ui para visualizar o dashboard
 
 ## Link de vídeo demonstração
-
+[Link do video no YouTube](https://youtu.be/BIMZAwNV_VM)
 
 ### Referências 
+[Projeto original, medidor de temperatura e luminosidade](https://github.com/ghsoares/Global-Solutions---IoT-Arduino)
