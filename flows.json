@@ -1,0 +1,966 @@
+[
+	{
+		"id": "dc27dc01.20127",
+		"type": "tab",
+		"label": "Arduino input",
+		"disabled": false,
+		"info": "This flow is responsible to grab data from arduino from serial port and send sensors values as topics via MQTT"
+	},
+	{
+		"id": "297c6a77.fd6f86",
+		"type": "tab",
+		"label": "Dashboard",
+		"disabled": false,
+		"info": "This flow is responsible to update the dashboard according to the values received from MQTT topics"
+	},
+	{
+		"id": "6613deda.8c17c",
+		"type": "tab",
+		"label": "Twitter bot",
+		"disabled": false,
+		"info": "This flow is responsible to send Twitter alert in case of high speed wind received from MQTT"
+	},
+	{
+		"id": "a3332ebe.179df",
+		"type": "serial-port",
+		"z": "",
+		"serialport": "COM4",
+		"serialbaud": "115200",
+		"databits": "8",
+		"parity": "none",
+		"stopbits": "1",
+		"waitfor": "",
+		"dtr": "none",
+		"rts": "none",
+		"cts": "none",
+		"dsr": "none",
+		"newline": "\\n",
+		"bin": "false",
+		"out": "char",
+		"addchar": "",
+		"responsetimeout": "200"
+	},
+	{
+		"id": "e403cecf.57097",
+		"type": "twitter-credentials",
+		"z": "",
+		"screen_name": "FiapGabriel"
+	},
+	{
+		"id": "65971467.4aa95c",
+		"type": "serial-port",
+		"serialport": "COM4",
+		"serialbaud": "115200",
+		"databits": "8",
+		"parity": "none",
+		"stopbits": "1",
+		"waitfor": "",
+		"dtr": "none",
+		"rts": "none",
+		"cts": "none",
+		"dsr": "none",
+		"newline": "\\n",
+		"bin": "false",
+		"out": "char",
+		"addchar": "",
+		"responsetimeout": "10000"
+	},
+	{
+		"id": "de506f1.15b179",
+		"type": "ui_group",
+		"z": "",
+		"name": "Info",
+		"tab": "db76abd1.99a188",
+		"order": 1,
+		"disp": true,
+		"width": "4",
+		"collapse": true
+	},
+	{
+		"id": "72dc4635.e9e4e8",
+		"type": "mqtt-broker",
+		"z": "",
+		"name": "Servidor-MTQQ",
+		"broker": "broker.hivemq.com",
+		"port": "1883",
+		"clientid": "clientId-kIXFqW4T30",
+		"usetls": false,
+		"compatmode": true,
+		"keepalive": "200",
+		"cleansession": true,
+		"birthTopic": "",
+		"birthQos": "0",
+		"birthPayload": "",
+		"closeTopic": "",
+		"closeQos": "0",
+		"closePayload": "",
+		"willTopic": "",
+		"willQos": "0",
+		"willPayload": ""
+	},
+	{
+		"id": "fff30d01.94f17",
+		"type": "ui_tab",
+		"name": "NAC4",
+		"icon": "dashboard",
+		"disabled": false,
+		"hidden": false
+	},
+	{
+		"id": "3fdf4fca.eee5d",
+		"type": "ui_base",
+		"theme": {
+			"name": "theme-light",
+			"lightTheme": {
+				"default": "#0094CE",
+				"baseColor": "#0094CE",
+				"baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+				"edited": true,
+				"reset": false
+			},
+			"darkTheme": {
+				"default": "#097479",
+				"baseColor": "#097479",
+				"baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+				"edited": false
+			},
+			"customTheme": {
+				"name": "Untitled Theme 1",
+				"default": "#4B7930",
+				"baseColor": "#4B7930",
+				"baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+			},
+			"themeState": {
+				"base-color": {
+					"default": "#0094CE",
+					"value": "#0094CE",
+					"edited": false
+				},
+				"page-titlebar-backgroundColor": {
+					"value": "#0094CE",
+					"edited": false
+				},
+				"page-backgroundColor": {
+					"value": "#fafafa",
+					"edited": false
+				},
+				"page-sidebar-backgroundColor": {
+					"value": "#ffffff",
+					"edited": false
+				},
+				"group-textColor": {
+					"value": "#1bbfff",
+					"edited": false
+				},
+				"group-borderColor": {
+					"value": "#ffffff",
+					"edited": false
+				},
+				"group-backgroundColor": {
+					"value": "#ffffff",
+					"edited": false
+				},
+				"widget-textColor": {
+					"value": "#111111",
+					"edited": false
+				},
+				"widget-backgroundColor": {
+					"value": "#0094ce",
+					"edited": false
+				},
+				"widget-borderColor": {
+					"value": "#ffffff",
+					"edited": false
+				},
+				"base-font": {
+					"value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+				}
+			},
+			"angularTheme": {
+				"primary": "indigo",
+				"accents": "blue",
+				"warn": "red",
+				"background": "grey"
+			}
+		},
+		"site": {
+			"name": "Node-RED Dashboard",
+			"hideToolbar": "false",
+			"allowSwipe": "false",
+			"lockMenu": "false",
+			"allowTempTheme": "true",
+			"dateFormat": "DD/MM/YYYY",
+			"sizes": {
+				"sx": 48,
+				"sy": 48,
+				"gx": 6,
+				"gy": 6,
+				"cx": 6,
+				"cy": 6,
+				"px": 0,
+				"py": 0
+			}
+		}
+	},
+	{
+		"id": "cc63ae84.1fe78",
+		"type": "serial-port",
+		"serialport": "COM4",
+		"serialbaud": "115200",
+		"databits": "8",
+		"parity": "none",
+		"stopbits": "1",
+		"waitfor": "",
+		"dtr": "none",
+		"rts": "none",
+		"cts": "none",
+		"dsr": "none",
+		"newline": "\\n",
+		"bin": "false",
+		"out": "char",
+		"addchar": "",
+		"responsetimeout": "10000"
+	},
+	{
+		"id": "ee341f77.963c7",
+		"type": "ui_group",
+		"name": "Sensores",
+		"tab": "7d467eb4.e5a4b",
+		"order": 1,
+		"disp": true,
+		"width": "15",
+		"collapse": false
+	},
+	{
+		"id": "c94307d6.600b58",
+		"type": "mqtt-broker",
+		"name": "Servidor-MTQQ",
+		"broker": "broker.hivemq.com​",
+		"port": "1883",
+		"clientid": "clientId-xxbcdY45iB",
+		"usetls": false,
+		"compatmode": true,
+		"keepalive": "60",
+		"cleansession": true,
+		"birthTopic": "",
+		"birthQos": "0",
+		"birthPayload": "",
+		"closeTopic": "",
+		"closeQos": "0",
+		"closePayload": "",
+		"willTopic": "",
+		"willQos": "0",
+		"willPayload": ""
+	},
+	{
+		"id": "7d467eb4.e5a4b",
+		"type": "ui_tab",
+		"name": "NAC4",
+		"icon": "dashboard",
+		"disabled": false,
+		"hidden": false
+	},
+	{
+		"id": "f2a6a04d.25a3e",
+		"type": "serial-port",
+		"serialport": "COM4",
+		"serialbaud": "115200",
+		"databits": "8",
+		"parity": "none",
+		"stopbits": "1",
+		"waitfor": "",
+		"dtr": "none",
+		"rts": "none",
+		"cts": "none",
+		"dsr": "none",
+		"newline": "\\n",
+		"bin": "false",
+		"out": "char",
+		"addchar": "",
+		"responsetimeout": "10000"
+	},
+	{
+		"id": "2f2d6655.ea29fa",
+		"type": "ui_group",
+		"name": "Sensores",
+		"tab": "a6bd37c7.5a5bb8",
+		"order": 1,
+		"disp": true,
+		"width": "15",
+		"collapse": false
+	},
+	{
+		"id": "6a10ff6f.cc9e7",
+		"type": "mqtt-broker",
+		"name": "Servidor-MTQQ",
+		"broker": "broker.hivemq.com​",
+		"port": "1883",
+		"clientid": "clientId-xxbcdY45iB",
+		"usetls": false,
+		"compatmode": true,
+		"keepalive": "60",
+		"cleansession": true,
+		"birthTopic": "",
+		"birthQos": "0",
+		"birthPayload": "",
+		"closeTopic": "",
+		"closeQos": "0",
+		"closePayload": "",
+		"willTopic": "",
+		"willQos": "0",
+		"willPayload": ""
+	},
+	{
+		"id": "a6bd37c7.5a5bb8",
+		"type": "ui_tab",
+		"name": "NAC4",
+		"icon": "dashboard",
+		"disabled": false,
+		"hidden": false
+	},
+	{
+		"id": "db76abd1.99a188",
+		"type": "ui_tab",
+		"z": "",
+		"name": "Sensors",
+		"icon": "dashboard",
+		"disabled": false,
+		"hidden": false
+	},
+	{
+		"id": "d4ed16d4.e61898",
+		"type": "ui_group",
+		"z": "",
+		"name": "Graphs",
+		"tab": "db76abd1.99a188",
+		"order": 2,
+		"disp": true,
+		"width": "12",
+		"collapse": true
+	},
+	{
+		"id": "58b2b7ea.e322b8",
+		"type": "serial in",
+		"z": "dc27dc01.20127",
+		"name": "Receive data",
+		"serial": "a3332ebe.179df",
+		"x": 130,
+		"y": 420,
+		"wires": [
+			[
+				"353e0540.0d913a"
+			]
+		]
+	},
+	{
+		"id": "353e0540.0d913a",
+		"type": "json",
+		"z": "dc27dc01.20127",
+		"name": "",
+		"property": "payload",
+		"action": "",
+		"pretty": false,
+		"x": 270,
+		"y": 420,
+		"wires": [
+			[
+				"6d370a45.57b2f4",
+				"5ffe99c9.7697a8",
+				"e65b6e97.a9287",
+				"d7567ac3.493388"
+			]
+		]
+	},
+	{
+		"id": "a95bdb1.c6ab128",
+		"type": "mqtt out",
+		"z": "dc27dc01.20127",
+		"name": "Temperature",
+		"topic": "digitalsolutions/meteorological-app/sensors/temperature",
+		"qos": "",
+		"retain": "",
+		"broker": "72dc4635.e9e4e8",
+		"x": 910,
+		"y": 360,
+		"wires": []
+	},
+	{
+		"id": "6d370a45.57b2f4",
+		"type": "change",
+		"z": "dc27dc01.20127",
+		"name": "Set temperature",
+		"rules": [
+			{
+				"t": "set",
+				"p": "payload",
+				"pt": "msg",
+				"to": "payload.temp",
+				"tot": "msg"
+			}
+		],
+		"action": "",
+		"property": "",
+		"from": "",
+		"to": "",
+		"reg": false,
+		"x": 560,
+		"y": 360,
+		"wires": [
+			[
+				"a95bdb1.c6ab128"
+			]
+		]
+	},
+	{
+		"id": "5ffe99c9.7697a8",
+		"type": "change",
+		"z": "dc27dc01.20127",
+		"name": "Set luminosity",
+		"rules": [
+			{
+				"t": "set",
+				"p": "payload",
+				"pt": "msg",
+				"to": "payload.lux",
+				"tot": "msg"
+			}
+		],
+		"action": "",
+		"property": "",
+		"from": "",
+		"to": "",
+		"reg": false,
+		"x": 560,
+		"y": 420,
+		"wires": [
+			[
+				"38f5171e.367658"
+			]
+		]
+	},
+	{
+		"id": "38f5171e.367658",
+		"type": "mqtt out",
+		"z": "dc27dc01.20127",
+		"name": "Luminosity",
+		"topic": "digitalsolutions/meteorological-app/sensors/luminosity",
+		"qos": "",
+		"retain": "",
+		"broker": "72dc4635.e9e4e8",
+		"x": 910,
+		"y": 420,
+		"wires": []
+	},
+	{
+		"id": "e65b6e97.a9287",
+		"type": "change",
+		"z": "dc27dc01.20127",
+		"name": "Set wind speed",
+		"rules": [
+			{
+				"t": "set",
+				"p": "payload",
+				"pt": "msg",
+				"to": "payload.windSpeed",
+				"tot": "msg"
+			}
+		],
+		"action": "",
+		"property": "",
+		"from": "",
+		"to": "",
+		"reg": false,
+		"x": 560,
+		"y": 480,
+		"wires": [
+			[
+				"716b1d2a.780784"
+			]
+		]
+	},
+	{
+		"id": "716b1d2a.780784",
+		"type": "mqtt out",
+		"z": "dc27dc01.20127",
+		"name": "Wind Speed",
+		"topic": "digitalsolutions/meteorological-app/sensors/wind-speed",
+		"qos": "",
+		"retain": "",
+		"broker": "72dc4635.e9e4e8",
+		"x": 910,
+		"y": 480,
+		"wires": []
+	},
+	{
+		"id": "2e198fe4.47672",
+		"type": "mqtt in",
+		"z": "297c6a77.fd6f86",
+		"name": "Temperature",
+		"topic": "digitalsolutions/meteorological-app/sensors/temperature",
+		"qos": "0",
+		"datatype": "json",
+		"broker": "72dc4635.e9e4e8",
+		"x": 270,
+		"y": 300,
+		"wires": [
+			[
+				"b22e103.d8167f",
+				"6f28e80b.2363d8"
+			]
+		]
+	},
+	{
+		"id": "58ed40a7.33bbd",
+		"type": "mqtt in",
+		"z": "297c6a77.fd6f86",
+		"name": "Luminosity",
+		"topic": "digitalsolutions/meteorological-app/sensors/luminosity",
+		"qos": "0",
+		"datatype": "json",
+		"broker": "72dc4635.e9e4e8",
+		"x": 280,
+		"y": 360,
+		"wires": [
+			[
+				"d4d6cc23.467a",
+				"e23440c5.0c923"
+			]
+		]
+	},
+	{
+		"id": "814c3bd3.eeee58",
+		"type": "mqtt in",
+		"z": "297c6a77.fd6f86",
+		"name": "Wind speed",
+		"topic": "digitalsolutions/meteorological-app/sensors/wind-speed",
+		"qos": "0",
+		"datatype": "json",
+		"broker": "72dc4635.e9e4e8",
+		"x": 270,
+		"y": 420,
+		"wires": [
+			[
+				"954011b6.be14",
+				"cd8e4d60.c898f"
+			]
+		]
+	},
+	{
+		"id": "b22e103.d8167f",
+		"type": "ui_chart",
+		"z": "297c6a77.fd6f86",
+		"name": "Temperature graph",
+		"group": "d4ed16d4.e61898",
+		"order": 0,
+		"width": "4",
+		"height": "4",
+		"label": "Temperature",
+		"chartType": "line",
+		"legend": "false",
+		"xformat": "HH:mm",
+		"interpolate": "bezier",
+		"nodata": "Temperature over time will show here",
+		"dot": false,
+		"ymin": "0",
+		"ymax": "200",
+		"removeOlder": 1,
+		"removeOlderPoints": "",
+		"removeOlderUnit": "3600",
+		"cutout": 0,
+		"useOneColor": false,
+		"useUTC": true,
+		"colors": [
+			"#1f77b4",
+			"#aec7e8",
+			"#ff7f0e",
+			"#2ca02c",
+			"#98df8a",
+			"#d62728",
+			"#ff9896",
+			"#9467bd",
+			"#c5b0d5"
+		],
+		"outputs": 1,
+		"useDifferentColor": false,
+		"x": 650,
+		"y": 300,
+		"wires": [
+			[]
+		]
+	},
+	{
+		"id": "d4d6cc23.467a",
+		"type": "ui_chart",
+		"z": "297c6a77.fd6f86",
+		"name": "Luminosity graph",
+		"group": "d4ed16d4.e61898",
+		"order": 0,
+		"width": "4",
+		"height": "4",
+		"label": "Luminosity",
+		"chartType": "line",
+		"legend": "false",
+		"xformat": "HH:mm",
+		"interpolate": "bezier",
+		"nodata": "Luminosity over time will show here",
+		"dot": false,
+		"ymin": "0",
+		"ymax": "1000",
+		"removeOlder": 1,
+		"removeOlderPoints": "",
+		"removeOlderUnit": "3600",
+		"cutout": 0,
+		"useOneColor": false,
+		"useUTC": true,
+		"colors": [
+			"#1f77b4",
+			"#aec7e8",
+			"#ff7f0e",
+			"#2ca02c",
+			"#98df8a",
+			"#d62728",
+			"#ff9896",
+			"#9467bd",
+			"#c5b0d5"
+		],
+		"outputs": 1,
+		"useDifferentColor": false,
+		"x": 650,
+		"y": 340,
+		"wires": [
+			[]
+		]
+	},
+	{
+		"id": "6f28e80b.2363d8",
+		"type": "ui_gauge",
+		"z": "297c6a77.fd6f86",
+		"name": "Temperature",
+		"group": "de506f1.15b179",
+		"order": 3,
+		"width": 0,
+		"height": 0,
+		"gtype": "gage",
+		"title": "Temperature",
+		"label": "Celsius",
+		"format": "{{value|number:2}} °C",
+		"min": "0",
+		"max": "200",
+		"colors": [
+			"#00b0b3",
+			"#00e61b",
+			"#ca3838"
+		],
+		"seg1": "",
+		"seg2": "",
+		"x": 630,
+		"y": 440,
+		"wires": []
+	},
+	{
+		"id": "e23440c5.0c923",
+		"type": "ui_gauge",
+		"z": "297c6a77.fd6f86",
+		"name": "Luminosity",
+		"group": "de506f1.15b179",
+		"order": 3,
+		"width": 0,
+		"height": 0,
+		"gtype": "donut",
+		"title": "Luminosity",
+		"label": "Lux",
+		"format": "{{value|number:2}} Lux",
+		"min": "0",
+		"max": "1000",
+		"colors": [
+			"#000000",
+			"#84853d",
+			"#ffc800"
+		],
+		"seg1": "",
+		"seg2": "",
+		"x": 630,
+		"y": 480,
+		"wires": []
+	},
+	{
+		"id": "954011b6.be14",
+		"type": "ui_gauge",
+		"z": "297c6a77.fd6f86",
+		"name": "Wind speed",
+		"group": "de506f1.15b179",
+		"order": 3,
+		"width": 0,
+		"height": 0,
+		"gtype": "gage",
+		"title": "Wind speed",
+		"label": "KM/h",
+		"format": "{{value|number:2}} KM/h",
+		"min": "0",
+		"max": "80",
+		"colors": [
+			"#33bbff",
+			"#7eff42",
+			"#ff0073"
+		],
+		"seg1": "",
+		"seg2": "",
+		"x": 630,
+		"y": 520,
+		"wires": []
+	},
+	{
+		"id": "cd8e4d60.c898f",
+		"type": "ui_chart",
+		"z": "297c6a77.fd6f86",
+		"name": "Wind speed graph",
+		"group": "d4ed16d4.e61898",
+		"order": 0,
+		"width": "4",
+		"height": "4",
+		"label": "Wind speed",
+		"chartType": "line",
+		"legend": "false",
+		"xformat": "HH:mm",
+		"interpolate": "bezier",
+		"nodata": "Wind speed over time will show here",
+		"dot": false,
+		"ymin": "0",
+		"ymax": "80",
+		"removeOlder": 1,
+		"removeOlderPoints": "",
+		"removeOlderUnit": "3600",
+		"cutout": 0,
+		"useOneColor": false,
+		"useUTC": true,
+		"colors": [
+			"#1f77b4",
+			"#aec7e8",
+			"#ff7f0e",
+			"#2ca02c",
+			"#98df8a",
+			"#d62728",
+			"#ff9896",
+			"#9467bd",
+			"#c5b0d5"
+		],
+		"outputs": 1,
+		"useDifferentColor": false,
+		"x": 650,
+		"y": 380,
+		"wires": [
+			[]
+		]
+	},
+	{
+		"id": "d7567ac3.493388",
+		"type": "debug",
+		"z": "dc27dc01.20127",
+		"name": "",
+		"active": false,
+		"tosidebar": true,
+		"console": false,
+		"tostatus": false,
+		"complete": "false",
+		"x": 560,
+		"y": 580,
+		"wires": []
+	},
+	{
+		"id": "8f61185f.da2338",
+		"type": "comment",
+		"z": "dc27dc01.20127",
+		"name": "",
+		"info": "The data received from serial from arduino is parsed as json object",
+		"x": 120,
+		"y": 380,
+		"wires": []
+	},
+	{
+		"id": "45311c.3ac1cee4",
+		"type": "comment",
+		"z": "dc27dc01.20127",
+		"name": "",
+		"info": "Each sensor value is changed as the msg payload,\nwhich is sent to each MQTT topic",
+		"x": 540,
+		"y": 320,
+		"wires": []
+	},
+	{
+		"id": "8d9b5c6e.abfd9",
+		"type": "comment",
+		"z": "dc27dc01.20127",
+		"name": "",
+		"info": "Each MQTT node is sending data to \ndigitalsolutions/meteorological-app/sensors/* topic,\nwhere '*' is the sensor",
+		"x": 900,
+		"y": 320,
+		"wires": []
+	},
+	{
+		"id": "69d6ecb5.c3e2b4",
+		"type": "comment",
+		"z": "297c6a77.fd6f86",
+		"name": "",
+		"info": "Each node is subscribed to a\ndigitalsolutions/meteorological-app/sensors/* topic,\nbeing '*' a sensor name",
+		"x": 280,
+		"y": 240,
+		"wires": []
+	},
+	{
+		"id": "415c4263.2003dc",
+		"type": "comment",
+		"z": "297c6a77.fd6f86",
+		"name": "",
+		"info": "Each value is sent to a gauge and a graph, where\nthe gauge will display the current value of the sensor,\nand the graph will show the variation in the last\nhour.",
+		"x": 620,
+		"y": 240,
+		"wires": []
+	},
+	{
+		"id": "d7054979.c890d8",
+		"type": "mqtt in",
+		"z": "6613deda.8c17c",
+		"name": "Wind speed",
+		"topic": "digitalsolutions/meteorological-app/sensors/wind-speed",
+		"qos": "0",
+		"datatype": "json",
+		"broker": "72dc4635.e9e4e8",
+		"x": 110,
+		"y": 440,
+		"wires": [
+			[
+				"d16e2967.af0398"
+			]
+		]
+	},
+	{
+		"id": "aebee349.98b8e",
+		"type": "comment",
+		"z": "6613deda.8c17c",
+		"name": "",
+		"info": "This flow only subscribes to\ndigitalsolutions/meteorological-app/sensors/wind-speed topic,\nto check the current wind speed and send alert using Twitter API",
+		"x": 120,
+		"y": 400,
+		"wires": []
+	},
+	{
+		"id": "d16e2967.af0398",
+		"type": "switch",
+		"z": "6613deda.8c17c",
+		"name": "Evaluates wind speed",
+		"property": "payload",
+		"propertyType": "msg",
+		"rules": [
+			{
+				"t": "gt",
+				"v": "80.0",
+				"vt": "num"
+			}
+		],
+		"checkall": "true",
+		"repair": false,
+		"outputs": 1,
+		"x": 320,
+		"y": 440,
+		"wires": [
+			[
+				"9f93da81.298aa8"
+			]
+		]
+	},
+	{
+		"id": "4d918.62d8b6e88",
+		"type": "debug",
+		"z": "6613deda.8c17c",
+		"name": "",
+		"active": true,
+		"tosidebar": true,
+		"console": false,
+		"tostatus": false,
+		"complete": "payload",
+		"targetType": "msg",
+		"x": 1090,
+		"y": 540,
+		"wires": []
+	},
+	{
+		"id": "9f93da81.298aa8",
+		"type": "delay",
+		"z": "6613deda.8c17c",
+		"name": "Limit tweet rate",
+		"pauseType": "rate",
+		"timeout": "5",
+		"timeoutUnits": "seconds",
+		"rate": "1",
+		"nbRateUnits": "1",
+		"rateUnits": "minute",
+		"randomFirst": "1",
+		"randomLast": "5",
+		"randomUnits": "seconds",
+		"drop": true,
+		"x": 540,
+		"y": 440,
+		"wires": [
+			[
+				"5eae4c29.e29324"
+			]
+		]
+	},
+	{
+		"id": "9b05724f.44978",
+		"type": "comment",
+		"z": "6613deda.8c17c",
+		"name": "",
+		"info": "This node will allow further execution only if\nwind speed is greater than 80 km/h",
+		"x": 320,
+		"y": 400,
+		"wires": []
+	},
+	{
+		"id": "26565eff.65cd32",
+		"type": "comment",
+		"z": "6613deda.8c17c",
+		"name": "",
+		"info": "This node will limit the rate of tweets sent via\nTwitter API, so there is no span in anyone feed",
+		"x": 540,
+		"y": 400,
+		"wires": []
+	},
+	{
+		"id": "5962d8ac.eebf68",
+		"type": "comment",
+		"z": "6613deda.8c17c",
+		"name": "",
+		"info": "This node simply set the msg.payload value as a fixed\ntext to be tweeted",
+		"x": 840,
+		"y": 400,
+		"wires": []
+	},
+	{
+		"id": "e387ddc5.9da4b",
+		"type": "twitter out",
+		"z": "6613deda.8c17c",
+		"twitter": "e403cecf.57097",
+		"name": "Tweet",
+		"x": 1070,
+		"y": 440,
+		"wires": []
+	},
+	{
+		"id": "5eae4c29.e29324",
+		"type": "function",
+		"z": "6613deda.8c17c",
+		"name": "Set text",
+		"func": "msg.payload = \"Alerta de vento! \" + (Math.random() * 1000.0)\nreturn msg;",
+		"outputs": 1,
+		"noerr": 0,
+		"x": 840,
+		"y": 440,
+		"wires": [
+			[
+				"4d918.62d8b6e88",
+				"e387ddc5.9da4b"
+			]
+		]
+	}
+]
